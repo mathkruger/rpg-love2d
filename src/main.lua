@@ -25,7 +25,6 @@ function love.draw()
 
     gameMap:drawLayers()
     player:draw()
-    world:draw()
 
     gameCamera.cam:detach()
 end
