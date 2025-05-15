@@ -46,6 +46,7 @@ function Player:create(world, gameMap)
     self.anim = self.animations.right
 
     self.walkParticles = getBubbleTrail(getBubble(30))
+    self.walkSound = love.audio.newSource("res/sounds/footstep.ogg", "static")
 
     return self
 end
@@ -85,16 +86,20 @@ function Player:update(dt)
     end
 
     self.collider:setLinearVelocity(vx, vy)
+    self.anim:update(dt)
 
     if isMoving == false then
         self.anim:gotoFrame(2)
         self.walkParticles:setEmissionRate(0)
+        self.walkSound:stop()
     else
         self.walkParticles:setEmissionRate(4)
-    end
-        
 
-    self.anim:update(dt)
+    end
+
+    if self.anim.position == 1 or self.anim.position == 3 then
+        self.walkSound:play()
+    end
 
     self.x = self.collider:getX()
     self.y = self.collider:getY()
