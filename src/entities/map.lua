@@ -1,4 +1,14 @@
+require "constants"
 local sti = require "res.lib.sti"
+
+local function getLayerWithClass(map, class)
+    for i, obj in pairs(map.layers) do
+        if obj.class == class then
+            return obj
+        end
+    end
+    return nil
+end
 
 GameMap = {}
 
@@ -12,10 +22,15 @@ end
 
 function GameMap:drawLayers()
     for _, v in ipairs(self.map.layers) do
-        if v.type == "tilelayer" then
+        if v.type == constants.tileLayerType then
             self.map:drawLayer(v)
         end
     end
+end
+
+function GameMap:drawHidePlayerLayer()
+    local hidePlayerLayer = getLayerWithClass(self.map, constants.hidePlayerLayerClass)
+    self.map:drawLayer(hidePlayerLayer)
 end
 
 function GameMap:setMap(file, world)
@@ -23,10 +38,10 @@ function GameMap:setMap(file, world)
     self.map = sti(self.mapFile)
     self.walls = {}
 
-    print(self.map.layers["Walls"].objects)
+    local collisionLayer = getLayerWithClass(self.map, constants.collisionLayerClass)
 
-    if self.map.layers["Walls"] then
-        for i, obj in pairs(self.map.layers["Walls"].objects) do
+    if collisionLayer then
+        for i, obj in pairs(collisionLayer.objects) do
             local wall = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height)
             wall:setType("static")
             table.insert(self.walls, wall)

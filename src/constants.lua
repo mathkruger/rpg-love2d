@@ -2,5 +2,9 @@ constants = {
     windowWidth = 640,
     windowHeight = 480,
     windowTitle = "RPG",
-    windowIcon = ""
+    windowIcon = "",
+
+    collisionLayerClass = "collision",
+    hidePlayerLayerClass = "hidePlayer",
+    tileLayerType = "tilelayer"
 }

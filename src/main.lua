@@ -7,11 +7,11 @@ local wf = require "res.lib.windfield"
 
 function love.load()
     world = wf.newWorld(0, 0)
-    
+
     gameMap = GameMap:create("res/maps/testMap.lua", world)
     gameCamera = GameCamera:create()
 
-    player = Player:create(world:newBSGRectangleCollider(45, 640, 50, 100, 10))
+    player = Player:create(world, gameMap)
 end
 
 function love.update(dt)
@@ -25,6 +25,7 @@ function love.draw()
 
     gameMap:drawLayers()
     player:draw()
+    GameMap:drawHidePlayerLayer()
 
     gameCamera.cam:detach()
 end
