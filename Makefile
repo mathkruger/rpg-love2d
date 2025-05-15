@@ -4,7 +4,7 @@ src_folder := src/
 build_folder := build/
 build_web_folder := ${build_folder}web
 
-love_file := ${title}.love'
+love_file := ${title}.love
 love_file_path := ${build_folder}${love_file}
 
 
