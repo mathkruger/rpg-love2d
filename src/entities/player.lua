@@ -51,7 +51,7 @@ function Player:create(world, gameMap)
     return self
 end
 
-function Player:update(dt)
+local function handlePlayerMovement(self, dt)
     local isMoving = false
 
     local vx = 0
@@ -106,6 +106,10 @@ function Player:update(dt)
 
     self.walkParticles:setPosition(self.x, self.y + self.height * 2)
     self.walkParticles:update(dt)
+end
+
+function Player:update(dt)
+    handlePlayerMovement(self, dt)
 end
 
 function Player:moveTo(x, y)

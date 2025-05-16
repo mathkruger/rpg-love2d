@@ -108,8 +108,8 @@
  </layer>
  <objectgroup id="4" name="Walls" class="collision">
   <object id="4" x="0" y="192" width="1920" height="49.4545"/>
-  <object id="6" x="768" y="1024" width="440" height="128"/>
-  <object id="7" x="64" y="1024" width="448" height="128"/>
+  <object id="6" x="768" y="1024" width="440" height="192"/>
+  <object id="7" x="64" y="1024" width="448" height="192"/>
   <object id="8" x="1472" y="1024" width="440" height="180"/>
   <object id="9" x="0" y="768" width="576" height="64"/>
   <object id="10" x="704" y="768" width="576" height="64"/>
